@@ -19,14 +19,15 @@ export function ImageGrid(props: ImageGridProps) {
 
   const initMasonry = () => {
     if (typeof window !== 'undefined' && container) {
-      // @ts-ignore ts pmo
+      // @ts-ignore
       import('masonry-layout').then((Masonry) => {
         masonryInstance = new Masonry.default(container, {
           itemSelector: '.grid-item',
           gutter: 16,
           transitionDuration: '0.3s',
           initLayout: false,
-          fitWidth: true
+          fitWidth: true,
+          columnWidth: '.grid-sizer'
         });
       });
     }
@@ -50,11 +51,12 @@ export function ImageGrid(props: ImageGridProps) {
   });
 
   return (
-    <div class="flex justify-center w-full p-4">
+  <div class="flex justify-center w-full p-4">
       <div ref={container} class="grid-container">
+        <div class="grid-sizer w-[calc(50%-8px)] sm:w-[300px]"></div>
         <For each={props.images}>
           {(image) => (
-            <div class="grid-item w-[300px] p-2">              <a 
+            <div class="grid-item w-[calc(50%-8px)] sm:w-[300px] mb-4">              <a 
                 href={image.originUrl || image.url}
                 target="_blank"
                 rel="noopener noreferrer"
