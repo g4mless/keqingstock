@@ -91,7 +91,7 @@ function App() {
         <ImageGrid images={images()} />
       </div>
       <footer class="sticky top-0 z-50 backdrop-blur-md bg-neutral-900/75 border-b border-neutral-800">
-        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center">
             <h1 class="text-m font-medium text-neutral-100">
             <span class="text-purple-500">©️Copyright All Reserved</span> to The Artists.<span class="text-purple-500"> Kudos to Them</span> For Making Good Keqing Fanart 💖.
             </h1>

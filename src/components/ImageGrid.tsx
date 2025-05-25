@@ -16,19 +16,28 @@ export function ImageGrid(props: ImageGridProps) {
   let masonryInstance: any;
   let imagesLoaded = 0;
   const totalImages = props.images.length;
+  const gutter = 16;
+
+  const getColumnWidth = () => {
+    if (!container) return 300;
+    const containerWidth = container.offsetWidth;
+    return window.innerWidth < 640 ? (containerWidth - gutter) / 2 : 300;
+  };
 
   const initMasonry = () => {
     if (typeof window !== 'undefined' && container) {
       // @ts-ignore
       import('masonry-layout').then((Masonry) => {
+        const columnWidth = getColumnWidth();
         masonryInstance = new Masonry.default(container, {
           itemSelector: '.grid-item',
-          gutter: 16,
+          gutter: gutter,
           transitionDuration: '0.3s',
           initLayout: false,
           fitWidth: true,
-          columnWidth: '.grid-sizer'
+          columnWidth: columnWidth
         });
+        masonryInstance.layout();
       });
     }
   };
@@ -40,23 +49,31 @@ export function ImageGrid(props: ImageGridProps) {
     }
   };
 
+  const handleResize = () => {
+    if (masonryInstance && container) {
+      masonryInstance.options.columnWidth = getColumnWidth();
+      masonryInstance.layout();
+    }
+  };
+
   onMount(() => {
     initMasonry();
+    window.addEventListener('resize', handleResize);
   });
 
   onCleanup(() => {
     if (masonryInstance) {
       masonryInstance.destroy();
     }
+    window.removeEventListener('resize', handleResize);
   });
-
   return (
-  <div class="flex justify-center w-full p-4">
-      <div ref={container} class="grid-container">
-        <div class="grid-sizer w-[calc(50%-8px)] sm:w-[300px]"></div>
+    <div class="flex justify-center w-full p-4">
+      <div ref={container} class="grid-container w-full sm:w-auto">
         <For each={props.images}>
           {(image) => (
-            <div class="grid-item w-[calc(50%-8px)] sm:w-[300px] mb-4">              <a 
+            <div class="grid-item w-1/2 sm:w-[300px] mb-4">
+              <a 
                 href={image.originUrl || image.url}
                 target="_blank"
                 rel="noopener noreferrer"
