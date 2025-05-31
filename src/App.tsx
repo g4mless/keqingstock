@@ -1,8 +1,17 @@
 import { createSignal } from 'solid-js'
 import { ImageGrid } from './components/ImageGrid'
 
+function shuffleArray<T>(array: T[]): T[] {
+  const arr = [...array];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
 function App() {
-  const [images] = createSignal([
+  const [images] = createSignal(shuffleArray([
     {
       id: '1',
       url: 'https://files.edgestore.dev/20jyqi4p5w9mabwp/keqing/_public/keqing-sit.webp',
@@ -75,7 +84,37 @@ function App() {
       originUrl: 'https://safebooru.org/index.php?page=post&s=view&id=5506434',
       alt: 'keqing wp 1'
     },
-  ]);
+    {
+      id: '13',
+      url: 'https://files.edgestore.dev/20jyqi4p5w9mabwp/keqing/_public/keqing-gloom.webp',
+      originUrl: 'https://www.pixiv.net/en/artworks/86046891',
+      alt: 'keqing gloom'
+    },
+    {
+      id: '14',
+      url: 'https://files.edgestore.dev/20jyqi4p5w9mabwp/keqing/_public/keqing-brush.webp',
+      originUrl: 'https://x.com/redi_rkgk/status/1328877046412537858',
+      alt: 'keqing brush'
+    },
+    {
+      id: '15',
+      url: 'https://files.edgestore.dev/20jyqi4p5w9mabwp/keqing/_public/keqing-umbrella.webp',
+      originUrl: 'https://www.pixiv.net/en/artworks/118174964',
+      alt: 'keqing umbrella'
+    },
+    {
+      id: '15',
+      url: 'https://files.edgestore.dev/20jyqi4p5w9mabwp/keqing/_public/keqing-headrest.webp',
+      originUrl: 'https://x.com/_luna610/status/1706959678205579453',
+      alt: 'keqing headrest'
+    },
+    {
+      id: '16',
+      url: 'https://files.edgestore.dev/20jyqi4p5w9mabwp/keqing/_public/keqing-landscape.webp',
+      originUrl: 'https://danbooru.donmai.us/posts/4183543?q=keqing_%28genshin_impact%29',
+      alt: 'keqing landscape'
+    },
+  ]));
 
   return (
     <div class="backdrop-blur-md bg-gradient-to-br from-neutral-800/30 to-purple-600/30 border border-white/10">
