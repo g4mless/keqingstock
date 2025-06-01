@@ -111,8 +111,20 @@ function App() {
     {
       id: '16',
       url: 'https://files.edgestore.dev/20jyqi4p5w9mabwp/keqing/_public/keqing-landscape.webp',
-      originUrl: 'https://danbooru.donmai.us/posts/4183543?q=keqing_%28genshin_impact%29',
+      originUrl: 'https://danbooru.donmai.us/posts/4183543',
       alt: 'keqing landscape'
+    },
+    {
+      id: '17',
+      url: 'https://files.edgestore.dev/20jyqi4p5w9mabwp/keqing/_public/keqing-bouquet.webp',
+      originUrl: 'https://www.pixiv.net/en/artworks/124469294',
+      alt: 'keqing bouquet'
+    },
+    {
+      id: '18',
+      url: 'https://files.edgestore.dev/20jyqi4p5w9mabwp/keqing/_public/keqing-looktoviewer.webp',
+      originUrl: 'https://x.com/ringozaka_0913/status/1812817203080974838',
+      alt: 'keqing look to viewer'
     },
   ]));
 
