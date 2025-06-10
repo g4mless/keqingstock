@@ -36,12 +36,12 @@ function App() {
         </div>
       </header>
 
-      <div class="max-w-7xl mx-auto w-full pb-20">
+      <div class="max-w-7xl mx-auto w-full">
         <Show when={images()} fallback={<div class="text-center text-neutral-400 py-10">Loading...</div>}>
           <ImageGrid images={images() || []} />
         </Show>
       </div>
-      <footer class="fixed bottom-0 left-0 w-full backdrop-blur-md bg-neutral-900/75 border-t border-neutral-800 z-50">
+      <footer class="sticky top-0 z-50 backdrop-blur-md bg-neutral-900/75 border-b border-neutral-800">
         <div class="max-w-7xl mx-auto px-4 h-20 flex items-center">
             <h1 class="text-m font-medium text-neutral-100">
             <span class="text-purple-500">© Copyright All Reserved</span> to The Artists.<span class="text-purple-500"> Kudos to Them</span> For Making Good Keqing Fanart 💖.
