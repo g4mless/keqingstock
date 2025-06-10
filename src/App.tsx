@@ -14,107 +14,107 @@ function App() {
   const [images] = createSignal(shuffleArray([
     {
       url: 'https://files.edgestore.dev/20jyqi4p5w9mabwp/keqing/_public/keqing-sit.webp',
-      originUrl: 'https://www.pixiv.net/en/artworks/106623085'
+      source: 'https://www.pixiv.net/en/artworks/106623085'
     },
     {
       url: 'https://files.edgestore.dev/20jyqi4p5w9mabwp/keqing/_public/keqing-see2.webp',
-      originUrl: 'https://www.pixiv.net/en/artworks/102934427'
+      source: 'https://www.pixiv.net/en/artworks/102934427'
     },
     {
       url: 'https://files.edgestore.dev/20jyqi4p5w9mabwp/keqing/_public/keqing-wet.webp',
-      originUrl: 'https://x.com/mar_R_o/status/1727111162284986484'
+      source: 'https://x.com/mar_R_o/status/1727111162284986484'
     },
     {
       url: 'https://files.edgestore.dev/20jyqi4p5w9mabwp/keqing/_public/keqing-see1.webp',
-      originUrl: 'https://www.pixiv.net/en/artworks/102934427'
+      source: 'https://www.pixiv.net/en/artworks/102934427'
     },
     {
       url: 'https://files.edgestore.dev/20jyqi4p5w9mabwp/keqing/_public/keqing-blinking.webp',
-      originUrl: 'https://x.com/ebibi_chiriri/status/1578037551717580800'
+      source: 'https://x.com/ebibi_chiriri/status/1578037551717580800'
     },
     {
       url: 'https://files.edgestore.dev/20jyqi4p5w9mabwp/keqing/_public/keqing-wp2.webp',
-      originUrl: 'https://www.pixiv.net/en/artworks/90015173'
+      source: 'https://www.pixiv.net/en/artworks/90015173'
     },
     {
       url: 'https://files.edgestore.dev/20jyqi4p5w9mabwp/keqing/_public/keqing-aura.webp',
-      originUrl: 'https://www.pixiv.net/en/artworks/130066464'
+      source: 'https://www.pixiv.net/en/artworks/130066464'
     },
     {
       url: 'https://files.edgestore.dev/20jyqi4p5w9mabwp/keqing/_public/keqing-baloon.webp',
-      originUrl: 'https://x.com/aoirooto/status/1768200404641153087'
+      source: 'https://x.com/aoirooto/status/1768200404641153087'
     },
     {
       url: 'https://files.edgestore.dev/20jyqi4p5w9mabwp/keqing/_public/keqing-ptrt2.webp',
-      originUrl: 'https://www.pixiv.net/artworks/109266324'
+      source: 'https://www.pixiv.net/artworks/109266324'
     },
     {
       url: 'https://files.edgestore.dev/20jyqi4p5w9mabwp/keqing/_public/keqing-ptrt1.webp',
-      originUrl: 'https://www.pixiv.net/en/artworks/126377588'
+      source: 'https://www.pixiv.net/en/artworks/126377588'
     },
     {
       url: 'https://files.edgestore.dev/20jyqi4p5w9mabwp/keqing/_public/keqing-wp1.webp',
-      originUrl: 'https://www.pixiv.net/en/artworks/87977897'
+      source: 'https://www.pixiv.net/en/artworks/87977897'
     },
     {
       url: 'https://files.edgestore.dev/20jyqi4p5w9mabwp/keqing/_public/keqing-kimono.webp',
-      originUrl: 'https://safebooru.org/index.php?page=post&s=view&id=5506434'
+      source: 'https://safebooru.org/index.php?page=post&s=view&id=5506434'
     },
     {
       url: 'https://files.edgestore.dev/20jyqi4p5w9mabwp/keqing/_public/keqing-gloom.webp',
-      originUrl: 'https://www.pixiv.net/en/artworks/86046891'
+      source: 'https://www.pixiv.net/en/artworks/86046891'
     },
     {
       url: 'https://files.edgestore.dev/20jyqi4p5w9mabwp/keqing/_public/keqing-brush.webp',
-      originUrl: 'https://x.com/redi_rkgk/status/1328877046412537858'
+      source: 'https://x.com/redi_rkgk/status/1328877046412537858'
     },
     {
       url: 'https://files.edgestore.dev/20jyqi4p5w9mabwp/keqing/_public/keqing-umbrella.webp',
-      originUrl: 'https://www.pixiv.net/en/artworks/118174964'
+      source: 'https://www.pixiv.net/en/artworks/118174964'
     },
     {
       url: 'https://files.edgestore.dev/20jyqi4p5w9mabwp/keqing/_public/keqing-headrest.webp',
-      originUrl: 'https://x.com/_luna610/status/1706959678205579453'
+      source: 'https://x.com/_luna610/status/1706959678205579453'
     },
     {
       url: 'https://files.edgestore.dev/20jyqi4p5w9mabwp/keqing/_public/keqing-landscape.webp',
-      originUrl: 'https://danbooru.donmai.us/posts/4183543'
+      source: 'https://danbooru.donmai.us/posts/4183543'
     },
     {
       url: 'https://files.edgestore.dev/20jyqi4p5w9mabwp/keqing/_public/keqing-bouquet.webp',
-      originUrl: 'https://www.pixiv.net/en/artworks/124469294'
+      source: 'https://www.pixiv.net/en/artworks/124469294'
     },
     {
       url: 'https://files.edgestore.dev/20jyqi4p5w9mabwp/keqing/_public/keqing-looktoviewer.webp',
-      originUrl: 'https://x.com/ringozaka_0913/status/1812817203080974838'
+      source: 'https://x.com/ringozaka_0913/status/1812817203080974838'
     },
     {
       url: 'https://files.edgestore.dev/20jyqi4p5w9mabwp/keqing/_public/keqing-portrait.webp',
-      originUrl: 'https://www.pixiv.net/artworks/97767520'
+      source: 'https://www.pixiv.net/artworks/97767520'
     },
     {
       url: 'https://files.edgestore.dev/20jyqi4p5w9mabwp/keqing/_public/keqing-casual.webp',
-      originUrl: 'https://www.zerochan.net/3555637'
+      source: 'https://www.zerochan.net/3555637'
     },
     {
       url: 'https://files.edgestore.dev/20jyqi4p5w9mabwp/keqing/_public/keqing-blushingcasual.webp',
-      originUrl: 'https://x.com/tozi526/status/1858888140146254273'
+      source: 'https://x.com/tozi526/status/1858888140146254273'
     },
     {
       url: 'https://files.edgestore.dev/20jyqi4p5w9mabwp/keqing/_public/keqing-looktoviewer2.webp',
-      originUrl: 'https://x.com/fal_maro/status/1835272406103121967'
+      source: 'https://x.com/fal_maro/status/1835272406103121967'
     },
     {
       url: 'https://files.edgestore.dev/20jyqi4p5w9mabwp/keqing/_public/keqing-oneeyeclosed.webp',
-      originUrl: 'https://www.pixiv.net/artworks/99030313'
+      source: 'https://www.pixiv.net/artworks/99030313'
     },
     {
       url: 'https://files.edgestore.dev/20jyqi4p5w9mabwp/keqing/_public/keqing-umbrella2.webp',
-      originUrl: 'https://danbooru.donmai.us/posts/7496493'
+      source: 'https://danbooru.donmai.us/posts/7496493'
     },
     {
       url: 'https://files.edgestore.dev/20jyqi4p5w9mabwp/keqing/_public/keqing-lovesmile.webp',
-      originUrl: 'https://x.com/tyenka7728/status/1625419589508124674'
+      source: 'https://x.com/tyenka7728/status/1625419589508124674'
     }
   ]));
 

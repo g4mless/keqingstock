@@ -2,7 +2,7 @@ import { For, onMount, onCleanup } from 'solid-js';
 
 interface Image {
   url: string;
-  originUrl?: string;
+  source: string;
 }
 
 interface ImageGridProps {
@@ -72,7 +72,7 @@ export function ImageGrid(props: ImageGridProps) {
           {(image) => (
             <div class="grid-item w-1/2 sm:w-[300px] mb-4">
               <a 
-                href={image.originUrl || image.url}
+                href={image.source || image.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="block relative overflow-hidden rounded-2xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg bg-white group"
