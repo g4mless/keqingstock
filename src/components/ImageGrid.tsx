@@ -1,9 +1,7 @@
 import { For, onMount, onCleanup } from 'solid-js';
 
 interface Image {
-  id: string;
   url: string;
-  alt?: string;
   originUrl?: string;
 }
 
@@ -81,7 +79,6 @@ export function ImageGrid(props: ImageGridProps) {
               >
                 <img 
                   src={image.url} 
-                  alt={image.alt || 'Grid image'} 
                   loading="lazy"
                   class="w-full h-auto block transition-transform duration-300 group-hover:scale-105"
                   onLoad={handleImageLoad}
