@@ -66,11 +66,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="bg-gray-900 text-white min-h-screen font-sans">
-    <header class="sticky top-0 z-10 bg-gray-900/70 backdrop-blur-lg py-4 shadow-lg">
+  <div class="bg-gradient-to-br from-zinc-900 to-violet-800 text-white min-h-screen font-sans">
+    <header class="sticky top-0 z-10 bg-zinc-900/70 backdrop-blur-lg py-4 shadow-lg">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 class="text-2xl font-bold text-left text-blue-300">
-          Keqing Image Gallery
+        <h1 class="text-2xl font-bold text-left text-white-300">
+          Keqing<span class="text-purple-500">Stock</span>
         </h1>
       </div>
     </header>
@@ -78,7 +78,7 @@ onMounted(() => {
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-6 pt-4">
       <!-- Loading State -->
       <div v-if="isLoading" class="flex justify-center items-center h-64">
-        <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-500"></div>
+        <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-violet-500"></div>
       </div>
 
       <!-- Error State -->
@@ -101,7 +101,7 @@ onMounted(() => {
             <img
               :src="image.url"
               :alt="'Image from source: ' + image.source"
-              class="w-full h-auto transition-transform duration-300 ease-in-out group-hover:scale-110"
+              class="w-full h-auto transition-transform duration-300 ease-in-out group-hover:scale-105"
               loading="lazy"
             />
           </a>
@@ -135,7 +135,6 @@ onMounted(() => {
 </template>
 
 <style>
-/* Fix for potential cross-browser scrollbar/padding issues */
 html {
   overflow-x: hidden;
 }
