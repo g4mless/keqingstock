@@ -37,8 +37,13 @@ const fetchImages = async () => {
       throw new Error('Network response was not ok');
     }
     const data = await response.json();
-    // Assuming the API returns the array directly
-    allImages.value = data || [];
+    // Fisher-Yates shuffle algorithm to randomize the array
+    const array = data || [];
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    allImages.value = array;
   } catch (e) {
     console.error('Failed to fetch images:', e);
     error.value = 'Failed to load images. Please try again later.';
