@@ -107,7 +107,7 @@ onMounted(() => {
           <button
             @click="changePage(currentPage - 1)"
             :disabled="currentPage === 1"
-            class="px-4 py-2 rounded font-bold transition-colors text-sm bg-blue-600 hover:bg-blue-500 disabled:bg-gray-700 disabled:text-gray-400 disabled:cursor-not-allowed"
+            class="px-4 py-2 font-bold transition-colors text-sm bg-blue-600 hover:bg-blue-500 disabled:bg-gray-700 disabled:text-gray-400 disabled:cursor-not-allowed"
           >
             Prev
           </button>
@@ -119,7 +119,7 @@ onMounted(() => {
           <button
             @click="changePage(currentPage + 1)"
             :disabled="currentPage === totalPages"
-            class="px-4 py-2 rounded font-bold transition-colors text-sm bg-blue-600 hover:bg-blue-500 disabled:bg-gray-700 disabled:text-gray-400 disabled:cursor-not-allowed"
+            class="px-4 py-2 font-bold transition-colors text-sm bg-blue-600 hover:bg-blue-500 disabled:bg-gray-700 disabled:text-gray-400 disabled:cursor-not-allowed"
           >
             Next
           </button>
