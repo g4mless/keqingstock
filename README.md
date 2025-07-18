@@ -1,5 +1,29 @@
-# Vue 3 + TypeScript + Vite
+# KeqingStock
+```
+Previously this project was written with SolidJS + Masonry, but i got headache implementing pagination and decided to rewrite it with Vue.
+```
+Image gallery for my beloved wife, Keqing 🥰
+(Please don't take this seriously)
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## Stack
+- Vue + Vite + TS
+- Tailwind
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+## Build
+simply just
+```bash
+git clone https://github.com/g4mless/keqingstock.git
+npm install
+```
+```bash
+npm run build
+```
+or run it first
+```bash
+npm run dev
+```
+
+## Customization
+You can customize the web theme and images if you know how.
+
+For the images, i store it with api, so you maybe also want to see my [api](https://github.com/g4mless/keqing-api) if you want to store your image without hassle integrating to this project. 
