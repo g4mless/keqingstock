@@ -68,14 +68,14 @@ onMounted(() => {
 <template>
   <div class="bg-gray-900 text-white min-h-screen font-sans">
     <header class="sticky top-0 z-10 bg-gray-900/70 backdrop-blur-lg py-4 shadow-lg">
-      <div class="container mx-auto px-5">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 class="text-2xl font-bold text-left text-blue-300">
           Keqing Image Gallery
         </h1>
       </div>
     </header>
 
-    <main class="container mx-auto px-5 py-5">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-6 pt-4">
       <!-- Loading State -->
       <div v-if="isLoading" class="flex justify-center items-center h-64">
         <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-500"></div>
@@ -89,14 +89,14 @@ onMounted(() => {
       <!-- Content -->
       <div v-else>
         <!-- Image Grid -->
-        <div class="columns-2 sm:columns-3 md:columns-4 gap-4">
+        <div class="columns-2 sm:columns-3 md:columns-3 lg:columns-4 gap-4">
           <a
             v-for="image in paginatedImages"
             :key="image.url"
             :href="image.source"
             target="_blank"
             rel="noopener noreferrer"
-            class="group block rounded-lg overflow-hidden shadow-md shadow-black/20 break-inside-avoid mb-4"
+            class="group block overflow-hidden shadow-md shadow-black/20 break-inside-avoid mb-4"
           >
             <img
               :src="image.url"
@@ -133,3 +133,10 @@ onMounted(() => {
     </main>
   </div>
 </template>
+
+<style>
+/* Fix for potential cross-browser scrollbar/padding issues */
+html {
+  overflow-x: hidden;
+}
+</style>
