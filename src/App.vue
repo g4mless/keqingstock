@@ -68,14 +68,14 @@ onMounted(() => {
 <template>
   <div class="bg-gray-900 text-white min-h-screen font-sans">
     <header class="sticky top-0 z-10 bg-gray-900/70 backdrop-blur-lg py-4 shadow-lg">
-      <div class="container mx-auto">
+      <div class="container mx-auto px-5">
         <h1 class="text-2xl font-bold text-left text-blue-300">
           Keqing Image Gallery
         </h1>
       </div>
     </header>
 
-    <main class="container mx-auto p-4">
+    <main class="container mx-auto px-5 py-5">
       <!-- Loading State -->
       <div v-if="isLoading" class="flex justify-center items-center h-64">
         <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-500"></div>
@@ -96,12 +96,12 @@ onMounted(() => {
             :href="image.source"
             target="_blank"
             rel="noopener noreferrer"
-            class="block hover:opacity-80 transition-opacity break-inside-avoid mb-4"
+            class="group block rounded-lg overflow-hidden shadow-md shadow-black/20 break-inside-avoid mb-4"
           >
             <img
               :src="image.url"
               :alt="'Image from source: ' + image.source"
-              class="w-full h-auto shadow-md shadow-black/20"
+              class="w-full h-auto transition-transform duration-300 ease-in-out group-hover:scale-110"
               loading="lazy"
             />
           </a>
