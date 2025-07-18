@@ -62,9 +62,9 @@ onMounted(() => {
 
 <template>
   <div class="bg-gray-900 text-white min-h-screen font-sans">
-    <header class="bg-black/30 py-4 shadow-lg mb-8">
+    <header class="sticky top-0 z-10 bg-gray-900/70 backdrop-blur-lg py-4 shadow-lg">
       <div class="container mx-auto">
-        <h1 class="text-4xl font-bold text-center text-blue-300">
+        <h1 class="text-2xl font-bold text-left text-blue-300">
           Keqing Image Gallery
         </h1>
       </div>
