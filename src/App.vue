@@ -62,11 +62,15 @@ onMounted(() => {
 
 <template>
   <div class="bg-gray-900 text-white min-h-screen font-sans">
-    <div class="container mx-auto p-4">
-      <h1 class="text-4xl font-bold text-left mb-8 text-blue-300">
-        Keqing Image Gallery
-      </h1>
+    <header class="bg-black/30 py-4 shadow-lg mb-8">
+      <div class="container mx-auto">
+        <h1 class="text-4xl font-bold text-center text-blue-300">
+          Keqing Image Gallery
+        </h1>
+      </div>
+    </header>
 
+    <main class="container mx-auto p-4">
       <!-- Loading State -->
       <div v-if="isLoading" class="flex justify-center items-center h-64">
         <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-500"></div>
@@ -92,7 +96,7 @@ onMounted(() => {
             <img
               :src="image.url"
               :alt="'Image from source: ' + image.source"
-              class="w-full h-auto rounded-lg shadow-md shadow-black/20"
+              class="w-full h-auto shadow-md shadow-black/20"
               loading="lazy"
             />
           </a>
@@ -121,6 +125,6 @@ onMounted(() => {
           </button>
         </div>
       </div>
-    </div>
+    </main>
   </div>
 </template>
