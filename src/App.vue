@@ -1,22 +1,19 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue';
 
-// Define the structure of an image object
 interface Image {
   url: string;
   source: string;
 }
 
-// Reactive state
 const allImages = ref<Image[]>([]);
 const currentPage = ref(1);
 const isLoading = ref(true);
 const error = ref<string | null>(null);
 
-// Constants
+//total image per page
 const pageSize = 20;
 
-// Computed properties for pagination
 const totalPages = computed(() => {
   return Math.ceil(allImages.value.length / pageSize);
 });
@@ -27,7 +24,6 @@ const paginatedImages = computed(() => {
   return allImages.value.slice(start, end);
 });
 
-// Methods
 const fetchImages = async () => {
   isLoading.value = true;
   error.value = null;
@@ -37,7 +33,7 @@ const fetchImages = async () => {
       throw new Error('Network response was not ok');
     }
     const data = await response.json();
-    // Fisher-Yates shuffle algorithm to randomize the array
+    // shuffle for img (idk why i still do this)
     const array = data || [];
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -59,29 +55,26 @@ const changePage = (page: number) => {
   }
 };
 
-// Lifecycle hook
 onMounted(() => {
   fetchImages();
 });
 </script>
 
 <template>
-  <div class="bg-gradient-to-br from-zinc-900 to-violet-800 text-white min-h-screen font-sans">
-    <header class="sticky top-0 z-10 bg-zinc-900/70 backdrop-blur-lg py-4 shadow-lg">
+  <div class="bg-gradient-to-br from-neutral-800/30 to-purple-950/30 text-white min-h-screen font-sans">
+    <header class="sticky top-0 z-10 bg-neutral-900/70 backdrop-blur-lg py-4 shadow-lg border border-white/10">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 class="text-2xl font-bold text-left text-white-300">
-          Keqing<span class="text-purple-500">Stock</span>
+        <h1 class="text-xl font-bold text-neutral-100">
+            <span class="text-purple-500">Keqing</span>Stock
         </h1>
       </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-6 pt-4">
-      <!-- Loading State -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-8">
       <div v-if="isLoading" class="flex justify-center items-center h-64">
         <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-violet-500"></div>
       </div>
 
-      <!-- Error State -->
       <div v-else-if="error" class="text-center text-red-400 bg-red-900/20 p-4 rounded-lg">
         <p>{{ error }}</p>
       </div>
@@ -107,12 +100,12 @@ onMounted(() => {
           </a>
         </div>
 
-        <!-- Pagination Controls -->
+        <!-- Vagination Ass -->
         <div v-if="totalPages > 1" class="flex justify-center items-center space-x-2 mt-8">
           <button
             @click="changePage(currentPage - 1)"
             :disabled="currentPage === 1"
-            class="px-4 py-2 font-bold transition-colors text-sm bg-blue-600 hover:bg-blue-500 disabled:bg-gray-700 disabled:text-gray-400 disabled:cursor-not-allowed"
+            class="px-4 py-2 font-bold transition-colors text-sm bg-violet-600/30 hover:bg-violet-500/30 text-neutral-100 disabled:bg-gray-700/30 disabled:text-gray-400/30"
           >
             Prev
           </button>
@@ -124,18 +117,28 @@ onMounted(() => {
           <button
             @click="changePage(currentPage + 1)"
             :disabled="currentPage === totalPages"
-            class="px-4 py-2 font-bold transition-colors text-sm bg-blue-600 hover:bg-blue-500 disabled:bg-gray-700 disabled:text-gray-400 disabled:cursor-not-allowed"
+            class="px-4 py-2 font-bold transition-colors text-sm bg-violet-600/30 hover:bg-violet-500/30 text-neutral-100 disabled:bg-gray-700/30 disabled:text-gray-400/30"
           >
             Next
           </button>
         </div>
+
+        <!-- Copyleft Text -->
+        <p class="text-center text-sm text-gray-400 mt-6 max-w-2xl mx-auto">
+          © All artworks are belong to their original creators. Sources linked through each image.
+        </p>
       </div>
     </main>
   </div>
 </template>
 
 <style>
+/* stupid touchpad issue */
 html {
   overflow-x: hidden;
+}
+/* Furry indonesia, solid solid solid */
+body {
+  background-color: #1c1917;
 }
 </style>
