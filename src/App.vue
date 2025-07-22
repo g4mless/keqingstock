@@ -48,9 +48,16 @@ const fetchImages = async () => {
   }
 };
 
-const changePage = (page: number) => {
-  if (page >= 1 && page <= totalPages.value) {
-    currentPage.value = page;
+const prevPage = () => {
+  if (currentPage.value > 1) {
+    currentPage.value--;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+};
+
+const nextPage = () => {
+  if (currentPage.value < totalPages.value) {
+    currentPage.value++;
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 };
@@ -103,7 +110,7 @@ onMounted(() => {
         <!-- Vagination Ass -->
         <div v-if="totalPages > 1" class="flex justify-center items-center space-x-2 mt-8">
           <button
-            @click="changePage(currentPage - 1)"
+            @click="prevPage"
             :disabled="currentPage === 1"
             class="px-4 py-2 font-bold transition-colors text-sm bg-violet-600/30 hover:bg-violet-500/30 text-neutral-100 disabled:bg-gray-700/30 disabled:text-gray-400/30"
           >
@@ -115,7 +122,7 @@ onMounted(() => {
           </span>
 
           <button
-            @click="changePage(currentPage + 1)"
+            @click="nextPage"
             :disabled="currentPage === totalPages"
             class="px-4 py-2 font-bold transition-colors text-sm bg-violet-600/30 hover:bg-violet-500/30 text-neutral-100 disabled:bg-gray-700/30 disabled:text-gray-400/30"
           >
