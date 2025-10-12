@@ -33,13 +33,7 @@ const fetchImages = async () => {
       throw new Error('Network response was not ok');
     }
     const data = await response.json();
-    // shuffle for img (idk why i still do this)
-    const array = data || [];
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-    allImages.value = array;
+    allImages.value = data || [];
   } catch (e) {
     console.error('Failed to fetch images:', e);
     error.value = 'Failed to load images. Please try again later.';
@@ -107,7 +101,7 @@ onMounted(() => {
           </a>
         </div>
 
-        <!-- Vagination Ass -->
+        <!-- Pagination -->
         <div v-if="totalPages > 1" class="flex justify-center items-center space-x-2 mt-8">
           <button
             @click="prevPage"
