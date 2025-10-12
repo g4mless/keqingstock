@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 
 interface Image {
   url: string;
@@ -8,6 +9,11 @@ interface Image {
 
 const allImages = ref<Image[]>([]);
 const currentPage = ref(1);
+const route = useRoute();
+const router = useRouter();
+
+// When true, the next currentPage change won't push a new history entry.
+const skipRoutePush = ref(false);
 const isLoading = ref(true);
 const error = ref<string | null>(null);
 
@@ -57,7 +63,39 @@ const nextPage = () => {
 };
 
 onMounted(() => {
-  fetchImages();
+  const pRaw = route.query.page;
+  if (pRaw) {
+    const p = Array.isArray(pRaw)
+      ? parseInt(pRaw[0] ?? '')
+      : parseInt(pRaw !== null ? String(pRaw) : '');
+    if (Number.isInteger(p) && p > 0) {
+      currentPage.value = p;
+      skipRoutePush.value = true;
+    }
+  }
+
+  fetchImages().then(() => {
+    if (totalPages.value > 0 && currentPage.value > totalPages.value) {
+      currentPage.value = Math.max(1, totalPages.value);
+    }
+  });
+});
+
+watch(currentPage, (val) => {
+  if (skipRoutePush.value) {
+    skipRoutePush.value = false;
+    return;
+  }
+
+  const query = { ...route.query } as Record<string, any>;
+  if (val === 1) {
+    delete query.page;
+  } else {
+    query.page = String(val);
+  }
+
+  router.push({ name: route.name || 'home', query }).catch(() => {
+  });
 });
 </script>
 
