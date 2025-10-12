@@ -114,7 +114,9 @@ watch(currentPage, (val) => {
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-8">
       <div v-if="isLoading" class="flex justify-center items-center h-64">
-        <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-violet-500"></div>
+        <div class="w-48 h-4 bg-neutral-700 rounded-full overflow-hidden relative">
+          <div class="absolute h-full bg-violet-500 rounded-full animate-progress-bar"></div>
+        </div>
       </div>
 
       <div v-else-if="error" class="text-center text-red-400 bg-red-900/20 p-4 rounded-lg">
