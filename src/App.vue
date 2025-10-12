@@ -51,14 +51,12 @@ const fetchImages = async () => {
 const prevPage = () => {
   if (currentPage.value > 1) {
     currentPage.value--;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 };
 
 const nextPage = () => {
   if (currentPage.value < totalPages.value) {
     currentPage.value++;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 };
 
@@ -94,8 +92,13 @@ watch(currentPage, (val) => {
     query.page = String(val);
   }
 
-  router.push({ name: route.name || 'home', query }).catch(() => {
-  });
+  router.push({ name: route.name || 'home', query })
+    .then(() => {
+      // Scroll after navigation completes so the router doesn't override it
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    })
+    .catch(() => {
+    });
 });
 </script>
 
