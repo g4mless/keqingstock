@@ -28,7 +28,7 @@ const fetchImages = async () => {
   isLoading.value = true;
   error.value = null;
   try {
-    const response = await fetch('https://keqing-api.vercel.app/api/v1/all');
+    const response = await fetch('https://keqing-api.g4mless.workers.dev/api/v1/all');
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
