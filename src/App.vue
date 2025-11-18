@@ -34,12 +34,12 @@ const fetchImages = async () => {
   isLoading.value = true;
   error.value = null;
   try {
-    const response = await fetch('https://keqing-api.vercel.app/all');
+    const response = await fetch('https://api.keqing.web.id/all');
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
     const data = await response.json();
-    allImages.value = data || [];
+    allImages.value = Array.isArray(data) ? data : [];
   } catch (e) {
     console.error('Failed to fetch images:', e);
     error.value = 'Failed to load images. Please try again later.';
