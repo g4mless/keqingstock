@@ -144,7 +144,7 @@ onUnmounted(() => {
 
 <template>
   <div class="bg-gradient-to-br from-neutral-800/30 to-purple-950/30 text-white min-h-screen font-sans">
-    <header class="sticky top-0 z-10 bg-neutral-900/70 backdrop-blur-lg py-4 shadow-lg border border-white/10">
+    <header class="sticky top-0 z-10 bg-neutral-900/70 backdrop-blur-2xl backdrop-saturate-200 py-4 shadow-lg border border-white/10">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 class="text-xl font-bold text-neutral-100">
             <span class="text-purple-500">Keqing</span>Stock
