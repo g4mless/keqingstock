@@ -100,6 +100,46 @@ watch(currentPage, (val) => {
     .catch(() => {
     });
 });
+
+const columnCount = ref(2);
+const masonryColumns = ref<Image[][]>([]);
+
+const updateColumnCount = () => {
+  const width = window.innerWidth;
+  if (width >= 1024) {
+    columnCount.value = 4;
+  } else if (width >= 640) {
+    columnCount.value = 3;
+  } else {
+    columnCount.value = 2;
+  }
+};
+
+const distributeImages = () => {
+  // Create empty arrays for each column
+  const cols: Image[][] = Array.from({ length: columnCount.value }, () => []);
+  
+  // Distribute images round-robin style
+  paginatedImages.value.forEach((image, index) => {
+    cols[index % columnCount.value].push(image);
+  });
+  
+  masonryColumns.value = cols;
+};
+
+watch([paginatedImages, columnCount], () => {
+  distributeImages();
+});
+
+onMounted(() => {
+  updateColumnCount();
+  window.addEventListener('resize', updateColumnCount);
+});
+
+import { onUnmounted } from 'vue';
+onUnmounted(() => {
+  window.removeEventListener('resize', updateColumnCount);
+});
 </script>
 
 <template>
@@ -126,22 +166,29 @@ watch(currentPage, (val) => {
       <!-- Content -->
       <div v-else>
         <!-- Image Grid -->
-        <div class="columns-2 sm:columns-3 md:columns-3 lg:columns-4 gap-4">
-          <a
-            v-for="image in paginatedImages"
-            :key="image.url"
-            :href="image.source"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="group block overflow-hidden shadow-md shadow-black/20 break-inside-avoid mb-4"
+        <!-- Image Grid (JS Masonry) -->
+        <div class="flex gap-4 items-start">
+          <div 
+            v-for="(col, colIndex) in masonryColumns" 
+            :key="colIndex" 
+            class="flex-1 flex flex-col gap-4"
           >
-            <img
-              :src="image.url"
-              :alt="'Image from source: ' + image.source"
-              class="w-full h-auto transition-transform duration-300 ease-in-out group-hover:scale-105"
-              loading="lazy"
-            />
-          </a>
+            <a
+              v-for="image in col"
+              :key="image.url"
+              :href="image.source"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group block overflow-hidden shadow-md shadow-black/20"
+            >
+              <img
+                :src="image.url"
+                :alt="'Image from source: ' + image.source"
+                class="w-full h-auto transition-transform duration-300 ease-in-out group-hover:scale-105"
+                loading="lazy"
+              />
+            </a>
+          </div>
         </div>
 
         <!-- Pagination -->
