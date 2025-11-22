@@ -11,6 +11,7 @@ const allImages = ref<Image[]>([]);
 const currentPage = ref(1);
 const route = useRoute();
 const router = useRouter();
+const selectedImage = ref<Image | null>(null);
 
 // When true, the next currentPage change won't push a new history entry.
 const skipRoutePush = ref(false);
@@ -173,13 +174,11 @@ onUnmounted(() => {
             :key="colIndex" 
             class="flex-1 flex flex-col gap-4"
           >
-            <a
+            <div
               v-for="image in col"
               :key="image.url"
-              :href="image.source"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="group block overflow-hidden shadow-md shadow-black/20"
+              class="group block overflow-hidden shadow-md shadow-black/20 cursor-pointer"
+              @click="selectedImage = image"
             >
               <img
                 :src="image.url"
@@ -187,7 +186,7 @@ onUnmounted(() => {
                 class="w-full h-auto transition-transform duration-300 ease-in-out group-hover:scale-105"
                 loading="lazy"
               />
-            </a>
+            </div>
           </div>
         </div>
 
@@ -215,11 +214,44 @@ onUnmounted(() => {
         </div>
 
         <!-- Copyleft Text -->
-        <p class="text-center text-sm text-gray-400 mt-6 max-w-2xl mx-auto">
-          © All artworks are belong to their original creators. Sources linked through each image.
-        </p>
-      </div>
-    </main>
+         <p class="text-center text-sm text-gray-400 mt-6 max-w-2xl mx-auto">
+           © All artworks are belong to their original creators. Sources linked through each image.
+         </p>
+        </div>
+        </main>
+
+        <!-- Lightbox Modal -->
+        <div 
+          v-if="selectedImage" 
+          class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 cursor-pointer"
+          @click="selectedImage = null"
+        >
+          <div 
+            class="relative w-full h-full flex items-center justify-center cursor-default"
+            @click.stop
+          >
+            <img 
+              :src="selectedImage.url" 
+              :alt="selectedImage.source"
+              class="max-w-[80vw] max-h-[80vh] object-contain"
+            />
+        <button 
+          @click="selectedImage = null"
+          class="absolute top-4 right-4 bg-white/20 hover:bg-white/40 text-white rounded-full w-10 h-10 flex items-center justify-center transition-colors"
+          aria-label="Close"
+        >
+          ✕
+        </button>
+        <a
+          :href="selectedImage.source"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="absolute bottom-4 left-4 bg-violet-700 hover:bg-violet-800 px-4 py-2 text-sm transition-colors"
+        >
+          View Source
+        </a>
+        </div>
+        </div>
   </div>
 </template>
 
