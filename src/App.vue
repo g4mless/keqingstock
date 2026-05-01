@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, watch } from 'vue';
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 interface Image {
@@ -16,7 +16,9 @@ const selectedImage = ref<Image | null>(null);
 // When true, the next currentPage change won't push a new history entry.
 const skipRoutePush = ref(false);
 const isLoading = ref(true);
+const isPageLoading = ref(true);
 const error = ref<string | null>(null);
+let preloadRunId = 0;
 
 //total image per page
 const pageSize = 20;
@@ -33,6 +35,7 @@ const paginatedImages = computed(() => {
 
 const fetchImages = async () => {
   isLoading.value = true;
+  isPageLoading.value = true;
   error.value = null;
   try {
     const response = await fetch('/index.json');
@@ -46,8 +49,43 @@ const fetchImages = async () => {
   } catch (e) {
     console.error('Failed to fetch images:', e);
     error.value = 'Failed to load images. Please try again later.';
+    isPageLoading.value = false;
   } finally {
     isLoading.value = false;
+  }
+};
+
+const preloadImage = (url: string) => {
+  return new Promise<void>((resolve) => {
+    const img = new Image();
+
+    img.onload = () => {
+      if (img.decode) {
+        img.decode().then(resolve).catch(resolve);
+      } else {
+        resolve();
+      }
+    };
+
+    img.onerror = () => resolve();
+    img.src = url;
+  });
+};
+
+const preloadCurrentPage = async () => {
+  const images = paginatedImages.value;
+  const runId = ++preloadRunId;
+
+  if (images.length === 0) {
+    isPageLoading.value = false;
+    return;
+  }
+
+  isPageLoading.value = true;
+  await Promise.all(images.map((image) => preloadImage(image.url)));
+
+  if (runId === preloadRunId) {
+    isPageLoading.value = false;
   }
 };
 
@@ -134,12 +172,15 @@ watch([paginatedImages, columnCount], () => {
   distributeImages();
 });
 
+watch(paginatedImages, () => {
+  preloadCurrentPage();
+});
+
 onMounted(() => {
   updateColumnCount();
   window.addEventListener('resize', updateColumnCount);
 });
 
-import { onUnmounted } from 'vue';
 onUnmounted(() => {
   window.removeEventListener('resize', updateColumnCount);
 });
@@ -156,7 +197,7 @@ onUnmounted(() => {
     </header>
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-8">
-      <div v-if="isLoading" class="flex justify-center items-center h-64">
+      <div v-if="isLoading || isPageLoading" class="flex justify-center items-center h-64">
         <div class="w-48 h-4 bg-neutral-700 rounded-full overflow-hidden relative">
           <div class="absolute h-full bg-violet-500 rounded-full animate-progress-bar"></div>
         </div>
@@ -186,7 +227,7 @@ onUnmounted(() => {
                 :src="image.url"
                 :alt="'Image from source: ' + image.source"
                 class="w-full h-auto transition-transform duration-300 ease-in-out group-hover:scale-105"
-                loading="lazy"
+                loading="eager"
               />
             </div>
           </div>
