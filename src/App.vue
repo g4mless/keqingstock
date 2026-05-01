@@ -35,12 +35,14 @@ const fetchImages = async () => {
   isLoading.value = true;
   error.value = null;
   try {
-    const response = await fetch('https://api.keqing.web.id/all');
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
+    const response = await fetch('/index.json');
+    if (!response.ok) throw new Error('Network response was not ok');
     const data = await response.json();
-    allImages.value = Array.isArray(data) ? data : [];
+    const raw = Array.isArray(data) ? data : [];
+    allImages.value = [...raw].reverse().map((img: any) => ({
+      url: `https://rrddcemyrcmrmpjnysgb.supabase.co/storage/v1/object/public/keq/keqing-${img.flnm}`,
+      source: img.src
+    }));
   } catch (e) {
     console.error('Failed to fetch images:', e);
     error.value = 'Failed to load images. Please try again later.';
@@ -246,7 +248,7 @@ onUnmounted(() => {
           :href="selectedImage.source"
           target="_blank"
           rel="noopener noreferrer"
-          class="absolute bottom-4 left-4 bg-violet-700 hover:bg-violet-800 px-4 py-2 text-sm transition-colors"
+          class="absolute bottom-4 left-4 bg-violet-600 hover:bg-violet-700 px-4 py-2 text-sm transition-colors"
         >
           View Source
         </a>
@@ -256,11 +258,11 @@ onUnmounted(() => {
 </template>
 
 <style>
-/* stupid touchpad issue */
+
 html {
   overflow-x: hidden;
 }
-/* Furry indonesia, solid solid solid */
+
 body {
   background-color: #1c1917;
 }
